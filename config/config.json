@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": "StrongPassword",
-    "database": "database_development",
+    "database": "MiniTweet",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
