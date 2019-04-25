@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <%- include("partials/header") %>
     <%- include("partials/css") %>
 </head>
+
 <body>
-    
+    <h1>Following</h1>
+    <% followingData.forEach((element) => { %>
+    <a href='/user/<%=element.id%>'>
+        <%= element.username %>
+    </a>
+    <br>
+    <% }) %>
 </body>
+
 </html>

@@ -9,7 +9,8 @@ routes.get("/", (req, res) => {
     res.render("homePage", {
         wrongInput: '',
         success: '',
-        successCreate: ''
+        successCreate: '',
+        wrongLength: ''
     })
 })
 
@@ -27,23 +28,27 @@ routes.post('/', (req, res) => {
         }
     })
         .then((userData) => {
+            req.session.user = userData.getFullname()
+            req.session.userId = userData.dataValues.id
+
             if (userData !== null) {
                 let check = bcrypt.compareSync(input.password, userData.password)
                 if (check == true) {
-                    req.session.user = userData.getFullname()
-                    res.redirect('/user')
+                    res.redirect(`/user/${req.session.userId}`)
                 } else {
                     res.render('homePage', {
                         wrongInput: 'Wrong username or password, please try again',
                         success: '',
-                        successCreate: ''
+                        successCreate: '',
+                        wrongLength: ''
                     })
                 }
             } else {
                 res.render('homePage', {
                     wrongInput: 'Wrong username or password, please try again',
                     success: '',
-                    successCreate: ''
+                    successCreate: '',
+                    wrongLength: ''
                 })
             }
         })
@@ -62,10 +67,16 @@ routes.post('/register', (req, res) => {
             res.render('homePage', {
                 success: success.getFullname(),
                 successCreate: 'is successfully created',
-                wrongInput: ''
+                wrongInput: '',
+                wrongLength: ''
             })
         })
-        .catch(err => res.send(err))
+        .catch(err => res.render('homePage', {
+            wrongLength: err.errors[0].message,
+            wrongInput: '',
+            successCreate: '',
+            success: ''
+        }))
 })
 
 routes.get('/logout', function (req, res) {

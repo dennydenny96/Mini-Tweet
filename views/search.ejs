@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include("partials/header") %>
+    <%- include("partials/css") %>
+</head>
+
+<body>
+    <h1>Search Result</h1>
+    <h3><%=searchUser.username %></h3>
+    <form action="/user/<%=originUser%>/follow/<%=searchUser.id%>">
+        <input type="submit" value="follow">
+    </form>
+</body>
+
+</html>
