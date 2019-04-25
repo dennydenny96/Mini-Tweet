@@ -4,13 +4,51 @@
 <head>
     <%- include("partials/header") %>
     <%- include("partials/css") %>
+    <%- include("partials/style") %>
 </head>
 
 <body>
-    <div>
-        <h5>Welcome, <%= userFullname %></h5>
-        <a href="/logout">Log out</a>
-    </div>
+    <nav class="navbar navbar-light bg-light justify-content-between">
+                <a class="navbar-brand">Navbar</a>
+                <form class="form-inline">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+    </nav>       
+    <h5>Welcome, <%= name %></h5>
+    <form class="example" action="/user/<%=followLink%>/search/">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+    <a href='/user/<%=followLink%>/follower'>my followers</a>
+    <br>
+    <a href='/user/<%=followLink%>/following'>my following</a>
+    <h1>my tweet</h1>
+    <form action="/user/<%=followLink%>" method="POST">
+        Tweet<br>
+        <input type="text" name="tweet" placeholder="put a good words">
+        <br><br>
+        <input type="submit" value="post">
+    </form>
+    <% dataTweets.forEach((tweet, i) => { %>
+    <p>
+        <% profileName.forEach((profil) => {%>
+        <% if(tweet.UserId == profil.dataValues.id) { %>
+        <a href='/user/<%=tweet.UserId%>'><%= profil.dataValues.first_name%></a>
+        <% } %>
+        <% }) %>
+        ||
+        <%= tweet.tweet %>
+        ||
+        <%= tweet.createdAt %>
+        ||
+        <%= sentiment(tweet.dataValues.sentiment) %>
+    </p>
+    <% }) %>
+
+    <br>
+    <a href="/logout">Log out</a>
+
 
 </body>
 
