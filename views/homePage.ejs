@@ -1,12 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <%- include("partials/header") %>
+    <%- include("partials/css") %>
 </head>
+
 <body>
-    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-">
+                <h2>Welcome To Mini Tweet</h2>
+                <form action="/" method="POST">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="inputId" aria-describedby="idHelp" name="username"
+                            placeholder="Enter username" required>
+                        <small id="idHelp" class="form-text text-muted">We'll never share your username with anyone
+                            else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="Password" required>
+                    </div>
+                    <medium id="wrongInput" class="form-text" style="color:red;"><%= wrongInput %></medium>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+
+
+                <br>
+                <h2>Register</h2>
+                <form action="/register" method="POST">
+                    <div class="form-group">
+                        <label for="username">New Username</label>
+                        <input type="text" class="form-control" id="inputId" aria-describedby="idHelp" name="username"
+                            placeholder="Enter username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="first_name">New First Name</label>
+                        <input type="text" class="form-control" id="first_name" aria-describedby="first_name"
+                            name="first_name" placeholder="Enter first name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">New Last Name</label>
+                        <input type="text" class="form-control" id="last_name" aria-describedby="last_name"
+                            name="last_name" placeholder="Enter last name" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    <medium id="wrongInput" class="form-text" style="color:green;"><%= `${success} ${successCreate} ` %></medium>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
