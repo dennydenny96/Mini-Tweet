@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+    <h1><%= name %></h1>
+    <a href='http://localhost:3000/user/<%=followLink%>/follower'>my followers</a>
+    <br>
+    <a href='http://localhost:3000/user/<%=followLink%>/following'>my following</a>
+    <h1>my tweet</h1>
+    <form action="http://localhost:3000/user/<%=followLink%>" method="POST">
+        Tweet<br>
+        <input type="text" name="tweet" placeholder="put a good words">
+        <br><br>
+        <input type="submit" value="post">
+    </form>
+    <% dataTweets.forEach((tweet) => { %>
+       <p>
+            <a href='http://localhost:3000/user/<%=tweet.id%>'> Link </a>
+            ||
+            <%= tweet.tweet %>
+            ||
+            <%= tweet.createdAt %>
+       </p> 
+    <% }) %>
+</body>
+</html>

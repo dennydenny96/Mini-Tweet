@@ -7,6 +7,4 @@ app.use(express.urlencoded({extended: false}))
 
 app.set('view engine', 'ejs')
 app.use('/', routes)
-
-
 app.listen(port, () => console.log(`active listening on port ${port}`))
