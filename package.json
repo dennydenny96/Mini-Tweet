@@ -22,6 +22,7 @@
     "express": "^4.16.4",
     "express-session": "^1.16.1",
     "pg": "^7.10.0",
+    "sentiment": "^5.0.1",
     "sequelize": "^5.7.5"
   }
 }

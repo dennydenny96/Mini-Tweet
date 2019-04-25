@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Tweet, {
       foreignKey: 'UserId'
     })
-    User.belongsToMany(models.User, {as: 'endUsers', through: 'Follows', foreignKey: 'FollowingId'})
-    User.belongsToMany(models.User, {as: 'endUsers', through: 'Follows', foreignKey: 'FollowerId'})
+    User.belongsToMany(models.User, {as: 'Follower', through: models.Follow, foreignKey: 'FollowingId'})
+    User.belongsToMany(models.User, {as: 'Following', through: models.Follow, foreignKey: 'FollowerId'})
   };
   return User;
 };
