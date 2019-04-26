@@ -1,5 +1,4 @@
 const routes = require("express").Router()
-const follow = require("./follow")
 const user = require("./user")
 const User = require('../models').User
 let bcrypt = require('bcryptjs')
@@ -14,7 +13,6 @@ routes.get("/", (req, res) => {
     })
 })
 
-routes.use("/follow", sessionChecker, follow)
 routes.use("/user", sessionChecker, user)
 
 routes.post('/', (req, res) => {

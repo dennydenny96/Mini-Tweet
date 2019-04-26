@@ -56,23 +56,12 @@ routes.get('/:id', (req, res) => {
                                 profileName: dataAsd
                             })
                         })
-
+                        .catch(err => res.send(err))
                 })
                 .catch(err => res.send(err))
         })
         .catch(err => res.send(err))
 })
-
-// routes.get('/editProfile/:id', (req, res) => {
-//     let dataUser = ''
-//     User.findOne({
-//         where: { id: req.params.id }
-//     })
-//         .then(getData => {
-//             res.send(getData)
-//         })
-//         .catch(err => res.send(err))
-// })
 
 routes.post('/:id', (req, res) => {
     let userId = req.params.id
@@ -99,7 +88,8 @@ routes.get('/:id/follower', (req, res) => {
     })
         .then((data) => {
             res.render('follower', {
-                followerData: data.Follower
+                followerData: data.Follower,
+                followLink: req.params.id
             })
         })
         .catch((err) => {
@@ -117,7 +107,8 @@ routes.get('/:id/following', (req, res) => {
     })
         .then((data) => {
             res.render('following', {
-                followingData: data.Following
+                followingData: data.Following,
+                followLink: req.params.id
             })
         })
         .catch((err) => res.send(err))
@@ -136,7 +127,9 @@ routes.get('/:id/search', (req, res) => {
             } else {
                 res.render('search', {
                     searchUser: data,
-                    originUser: req.params.id
+                    originUser: req.params.id,
+                    followLink: req.params.id,
+                    msg: ''
                 })
             }
         })
@@ -155,7 +148,12 @@ routes.get('/:followerId/follow/:followingId', (req, res) => {
         .then(() => {
             User.findByPk(req.params.followingId)
                 .then((data) => {
-                    res.send(`Yeay you have followed ${data.username}`)
+                    res.render('search', {
+                        searchUser: data,
+                        originUser: req.params.id,
+                        followLink: req.params.id,
+                        msg: `Yeay you have followed ${data.getFullname()}`
+                    })
                 })
                 .catch((err) => {
                     res.send(err)

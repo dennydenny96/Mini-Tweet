@@ -7,11 +7,14 @@
 </head>
 
 <body>
+    <%- include("partials/navbar") %>
     <h1>Search Result</h1>
-    <h3><%=searchUser.username %></h3>
+    <h3><%=searchUser.getFullname() %></h3>
     <form action="/user/<%=originUser%>/follow/<%=searchUser.id%>">
         <input type="submit" value="follow">
     </form>
+    <br>
+    <medium class="form-text" style="color:green;"><%= msg %></medium>
 </body>
 
 </html>
