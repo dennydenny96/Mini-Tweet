@@ -7,9 +7,10 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" style="float:right">
         <div class="row">
             <div class="col-sm-">
+                <br>
                 <h2>Welcome To Mini Tweet</h2>
                 <form action="/" method="POST">
                     <div class="form-group">
@@ -27,16 +28,14 @@
                     <medium id="wrongInput" class="form-text" style="color:red;"><%= wrongInput %></medium>
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
-
-
-                <br>
+                <hr>
                 <h2>Register</h2>
                 <form action="/register" method="POST">
                     <div class="form-group">
                         <label for="username">New Username</label>
                         <input type="text" class="form-control" id="inputId" aria-describedby="idHelp" name="username"
                             placeholder="Enter username" required>
-                        
+
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
@@ -55,7 +54,8 @@
                     </div>
                     <medium id="err" class="form-text" style="color:red;"><%= wrongLength %></medium>
                     <button type="submit" class="btn btn-primary">Register</button>
-                    <medium id="wrongInput" class="form-text" style="color:green;"><%= `${success} ${successCreate} ` %>
+                    <medium id="wrongInput" class="form-text" style="color:green;">
+                        <%= `${success} ${successCreate} ` %>
                     </medium>
                 </form>
             </div>
